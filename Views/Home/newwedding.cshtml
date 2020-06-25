@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "New Wedding Page";
+}
+@model Wedding
+
+<style>
+  .jumbotron{
+    background-image: url("/img/pinkflows.png");
+    background-size: cover;
+
+    
+  }
+  h1{
+    text-align: center;
+    font-family:'Courgette';
+    color: white;
+  }
+  .main{
+      padding-left: 385px;
+  }
+  .text-center{
+      padding-top: 20px;
+  }
+  .logout{
+        
+
+        font-size: 20px;
+        display: inline-block;
+    }
+    .home{
+        font-size: 20px;
+        display: inline-block;
+        padding-left: 860px;
+
+    }
+</style>
+<a class="home text-dark" href="/dashboard">Home | <a class="logout text-dark" href="/logout"> | Logout</a>
+<div class="jumbotron">
+    <h1>Plan a Wedding</h1>
+</div>
+
+<div  class="main">
+<div class= "card" style="width: 23rem">
+    <div class="card-header bg-dark text-white">Plan a Wedding</div>
+    <div class="card-body">
+        <form asp-action="createwedding" asp-controller="Home" method="post" class="form-group">
+            <label asp-for="wedder1">Person 1:</label>
+            <span class="text-danger" asp-validation-for="wedder1"></span>
+            <input class="form-control" asp-for="wedder1">
+
+            <label asp-for="wedder2">Person 2:</label>
+            <span class="text-danger" asp-validation-for="wedder2"></span>
+            <input class="form-control" asp-for="wedder2">
+
+            <label asp-for="date">Pick a Date:</label>  
+            <span class="text-danger" asp-validation-for="date"></span>
+            <input class="form-control" asp-for="date">
+
+            <div class="text-center">
+
+                <input value="Submit" class="btn btn-dark" type="submit">  
+            </div>
+        
+        
+        </form>
+    </div>
+
+
+</div>
+</div>

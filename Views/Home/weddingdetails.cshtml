@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "Wedding Details";
+}
+@model Wedding
+<style>
+    .jumbotron{
+        color: black;
+        font-family: 'Courgette';
+        text-align: center;
+        background-image: url("/img/white4.png");
+        background-size: cover;
+    }
+    .logout{
+        
+
+        font-size: 20px;
+        display: inline-block;
+    }
+    .home{
+        font-size: 20px;
+        display: inline-block;
+        padding-left: 860px;
+
+    }
+    
+    .card-header{
+        font-size: 25px;
+        background-color: black;
+    }
+    .body{
+        padding-left: 355px;
+    }
+    p{
+        font-size: 19px;
+    }
+    
+   
+ 
+    
+   
+</style>
+<a class="home text-dark" href="/dashboard">Home | <a class="logout text-dark" href="/logout"> | Logout</a>
+
+<div class="jumbotron">
+    <h1>@Model.wedder1 & @Model.wedder2's Wedding</h1>
+</div>
+<div class="body">
+<div class="card"style="width: 23rem;">
+    <div class="card-header text-white">
+        @Model.wedder1 & @Model.wedder2
+    </div>
+    <div class="card-body ">
+        <p>Date: @String.Format("{0:D}", Model.date)</p>
+        <p>Planned by: @Model.planner.firstname @Model.planner.lastname</p>
+        <p>Guests Attending:</p>
+        @foreach(Association a in @Model.attendees)
+        {
+            @if(a.attendee.userID == ViewBag.User.userID)
+            {
+                <li>You are going to this event!</li>
+            }
+            else{
+                <li>@a.attendee.firstname @a.attendee.lastname</li>
+            }
+        }
+ 
+    </div>
+</div>
+</div>
+

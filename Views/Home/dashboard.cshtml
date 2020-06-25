@@ -1,0 +1,90 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<style>
+    .jumbotron{
+        background-image: url("img/dressflowers.png");
+        background-size: cover;
+        font-family: 'Courgette';
+        color: white;
+        font-size: 22px;
+        height: 630px;
+        text-align: center;
+    }
+    h4{
+        font-family: 'Courgette';
+        text-align: center;
+        padding-bottom: 12px;
+    }
+    .names{
+        color:black;
+        font-family: 'Courgette';
+        font-size: 20px;
+    }
+    .logout{
+        padding-left: 1000px;
+        padding-bottom: 12px;
+        font-size: 20px;
+    }
+    .date{
+        font-size: 17px;
+    }
+
+    
+   
+</style>
+@model List<Wedding>
+
+<a class="logout text-dark"href="/logout">Logout</a>
+
+<div class="jumbotron">
+    <h1>Welcome to The Wedding Planner, @ViewBag.User.firstname @ViewBag.User.lastname!</h1>
+
+</div>
+
+<h4>~ Upcoming Weddings ~</h4>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Wedding</th>
+            <th scope="col" >Date</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Wedding m in Model)
+        {
+            <tr>
+                <td><a class="names" href="/weddings/@m.weddingID">@m.wedder1 & @m.wedder2</a></td>
+                <td class="date">@String.Format("{0:d}", m.date) </td>
+                <td>  @m.attendees.Count </td>
+                <td>
+                    @if(ViewBag.User.userID == m.planner.userID)
+                    {
+                        <a class="btn btn-dark btn-sm" href="/weddings/@m.weddingID/delete">Delete</a>
+                    }
+                    else
+                    {
+                        if(m.attendees.Any( w => w.userID == ViewBag.User.userID))
+                        {
+                            <a class="btn btn-outline-dark btn-sm" href="/weddings/@m.weddingID/leave" >Un-RSVP</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-dark btn-sm" href="/weddings/@m.weddingID/rsvp">RSVP</a>
+                        }
+                    }
+                </td>
+
+
+            </tr>
+        }
+        
+    </tbody>
+    
+</table>
+<div class="text-center">
+<a href="/newwedding" class="btn btn-dark">New Wedding</a>
+</div>
+

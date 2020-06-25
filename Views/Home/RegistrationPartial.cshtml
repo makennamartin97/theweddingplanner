@@ -1,0 +1,44 @@
+
+@model User
+<style>
+    .card{
+        display: inline-block;
+    }
+</style>
+
+<div class="card" style="width: 18rem;">
+   
+<form asp-action="Register" asp-controller="Home" method="post">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <label asp-for="firstname">First Name:</label>
+            <span class="text-danger" asp-validation-for="firstname"></span>
+            <input asp-for="firstname">
+        </li>
+        <li class="list-group-item">
+            <label asp-for="lastname">Last Name:</label>
+            <span class="text-danger" asp-validation-for="lastname"></span>
+            <input asp-for="lastname">
+        </li>
+        <li class="list-group-item">
+            <label asp-for="email">Email:</label>
+            <span class="text-danger" asp-validation-for="email"></span>
+            <input asp-for="email">
+        </li>
+        <li class="list-group-item">
+            <label asp-for="password">Password:</label>
+            <span class="text-danger" asp-validation-for="password"></span>
+            <input asp-for="password">
+        </li>
+        <li class="list-group-item">
+            <label asp-for="confirm">Confirm:</label>
+            <span class="text-danger" asp-validation-for="confirm"></span>
+            <input asp-for="confirm">
+        </li>
+        <input type="submit" class="btn btn-dark" value="Register">
+
+    </ul>
+   
+
+ </form>  
+</div>  
